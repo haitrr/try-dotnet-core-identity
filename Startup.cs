@@ -50,6 +50,9 @@ namespace TryDotnetCoreIdentity
 
                 // User setting
                 options.User.RequireUniqueEmail = true;
+
+                // Signin setting
+                options.SignIn.RequireConfirmedEmail = true;
             });
 
             services.ConfigureApplicationCookie(options =>
@@ -62,11 +65,14 @@ namespace TryDotnetCoreIdentity
                 options.AccessDeniedPath = "/Account/AccessDenied";  // Default is the same 
                 options.SlidingExpiration = true;
             });
-            
+
+
             // Add application services.
             services.AddTransient<IEmailSender, EmailSender>();
 
             services.AddMvc();
+
+            services.Configure<AuthMessageSenderOptions>(Configuration);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
