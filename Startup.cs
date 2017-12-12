@@ -42,6 +42,11 @@ namespace TryDotnetCoreIdentity
                 options.Password.RequireUppercase = true;
                 options.Password.RequireLowercase = false;
                 options.Password.RequiredUniqueChars = 6;
+
+                // Lockout setting
+                options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(30);
+                options.Lockout.MaxFailedAccessAttempts = 10;
+                options.Lockout.AllowedForNewUsers = true;
             });
             // Add application services.
             services.AddTransient<IEmailSender, EmailSender>();
