@@ -51,6 +51,18 @@ namespace TryDotnetCoreIdentity
                 // User setting
                 options.User.RequireUniqueEmail = true;
             });
+
+            services.ConfigureApplicationCookie(options =>
+            {
+                // Cookie settings
+                options.Cookie.HttpOnly = true;
+                options.Cookie.Expiration = TimeSpan.FromDays(150);
+                options.LoginPath = "/Account/Login";   // Default is the same
+                options.LogoutPath = "/Account/Logout";   // Default is the same
+                options.AccessDeniedPath = "/Account/AccessDenied";  // Default is the same 
+                options.SlidingExpiration = true;
+            });
+            
             // Add application services.
             services.AddTransient<IEmailSender, EmailSender>();
 
