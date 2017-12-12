@@ -47,6 +47,9 @@ namespace TryDotnetCoreIdentity
                 options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(30);
                 options.Lockout.MaxFailedAccessAttempts = 10;
                 options.Lockout.AllowedForNewUsers = true;
+
+                // User setting
+                options.User.RequireUniqueEmail = true;
             });
             // Add application services.
             services.AddTransient<IEmailSender, EmailSender>();
